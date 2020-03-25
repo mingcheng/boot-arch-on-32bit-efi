@@ -1,5 +1,7 @@
 # Boot Arch Linux on 32Bit EFI
 
+![macmini2,1](./macmini2,1.jpg)
+
 在有些上古的机型上例如上网本和早期的基于 Intel Mac 设备，可能部署的是 32 位的 UEF 系统，但是搭载的是 64 位的处理器。
 
 这些机型无法使用现代的 ISO 刻录镜像的方式引导系统，因为目前主流大部分平台都是使用的是 64 位的 UEFI 和处理器。我们需要针对这些上古的机型做些特殊的引导处理，以方便安装现代的操作系统。
@@ -14,11 +16,7 @@
 
 首先，找个 U 盘分区为 MBR 分区格式，并格式化为 FAT32 格式，同时记住这个分区的 UUID 。
 
-然后将 EFI 目录拷贝到这个 FAT32 的分区中，修改 `/EFI/BOOT/grub.cfg` 中的内容，将对应：
-
-set imgdevpath="/dev/disk/by-uuid/7149-1BE9"
-
-修改为上述格式化完的 UUID，保存关闭文件。
+然后将 EFI 目录拷贝到这个 FAT32 的分区中，修改 `/EFI/BOOT/grub.cfg` 中的内容，将对应：`set imgdevpath="/dev/disk/by-uuid/7149-1BE9"` 修改为上述格式化完的 UUID，保存关闭文件。
 
 然后将最新的 archlinux 安装 iso 重命名为 boot.iso 拷贝到 `/EFI/BOOT/boot-isos` 中即可，注意 FAT32 大小写不敏感。
 
